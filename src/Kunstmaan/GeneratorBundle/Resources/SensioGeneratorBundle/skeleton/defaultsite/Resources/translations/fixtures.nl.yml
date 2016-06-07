@@ -1,0 +1,18 @@
+page:
+    home:
+        title:  Home
+    services:
+        title:  Diensten
+        slug:   diensten
+demo:
+    services:
+        header:
+            title:      Onze diensten
+            content:    Je kan bij ons terecht voor een selectie van de beste fietsen, maar ook voor het onderhoud ervan. Onze vakmensen helpen je graag verder in onze winkel.
+        page_template:  Content page with submenu
+    our_bikes:
+        title:  Onze fietsen
+        slug:   koop-een-fiets
+        description:    'Onze selectie van fietsen vertegenwoordigd de filosofie van The Crew. Alleen de beste fietsen bieden we aan, te koop, en dat doen we aan de beste prijzen. Geen grootwarenhuis, maar een speciaalzaak met gratis persoonlijk advies in onze winkel.'
+        header1:
+            title:  Onze fietsen

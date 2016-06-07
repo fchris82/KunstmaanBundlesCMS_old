@@ -28,6 +28,11 @@ use {{ namespace }}\Entity\Bike;
 class DefaultSiteFixtures extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {
     /**
+     * Translation domain
+     */
+    const TRANSLATION_DOMAIN = 'fixtures';
+
+    /**
      * Username that is used for creating pages
      */
     const ADMIN_USERNAME = 'admin';
@@ -116,8 +121,8 @@ class DefaultSiteFixtures extends AbstractFixture implements OrderedFixtureInter
         foreach ($this->requiredLocales as $locale) {
             $translations[] = array(
                 'language' => $locale,
-                'callback' => function ($page, $translation, $seo) {
-                    $translation->setTitle('Home');
+                'callback' => function ($page, $translation, $seo) use ($locale) {
+                    $translation->setTitle($this->trans('page.home.title', $locale));
                     $translation->setSlug('');
                 }
             );
@@ -269,8 +274,8 @@ class DefaultSiteFixtures extends AbstractFixture implements OrderedFixtureInter
         $translations = array();
         foreach ($this->requiredLocales as $locale) {
             $translations[] = array('language' => $locale, 'callback' => function($page, $translation, $seo) use ($locale) {
-                $translation->setTitle($locale == 'nl' ? 'Diensten' : 'Services');
-                $translation->setSlug($locale == 'nl' ? 'diensten' : 'services');
+                $translation->setTitle($this->trans('page.services.title', $locale));
+                $translation->setSlug($this->trans('page.services.slug', $locale));
                 $translation->setWeight(20);
             });
         }
@@ -292,19 +297,19 @@ class DefaultSiteFixtures extends AbstractFixture implements OrderedFixtureInter
             $pageparts['main'][] = $this->pagePartCreator->getCreatorArgumentsForPagePartAndProperties(
                 '{{ namespace }}\Entity\PageParts\HeaderPagePart',
                 array(
-                    'setTitle' => $locale == 'nl' ? 'Onze diensten' : 'Our services',
+                    'setTitle' => $this->trans('demo.services.header.title', $locale),
                     'setNiv' => 2
                 )
             );
             $pageparts['main'][] = $this->pagePartCreator->getCreatorArgumentsForPagePartAndProperties(
                 '{{ namespace }}\Entity\PageParts\TextPagePart',
                 array(
-                    'setContent' => $locale == 'nl' ? 'Je kan bij ons terecht voor een selectie van de beste fietsen, maar ook voor het onderhoud ervan. Onze vakmensen helpen je graag verder in onze winkel.' : 'We are the place to go for a selection of the best bikes, but also for the maintenance of your bike. Our skilled professionals will help you gladly in our store.'
+                    'setContent' => $this->trans('demo.services.header.content', $locale),
                 )
             );
 
             $this->pagePartCreator->addPagePartsToPage('services', $pageparts, $locale);
-            $this->pagePartCreator->setPageTemplate('services', $locale, 'Content page with submenu');
+            $this->pagePartCreator->setPageTemplate('services', $locale, $this->trans('demo.services.page_template', $locale));
         }
 
         // Buy bikes page
@@ -319,11 +324,11 @@ class DefaultSiteFixtures extends AbstractFixture implements OrderedFixtureInter
         $translations = array();
         foreach ($this->requiredLocales as $locale) {
             $translations[] = array('language' => $locale, 'callback' => function($page, $translation, $seo) use ($locale, $menuMedia) {
-                $translation->setTitle($locale == 'nl' ? 'Onze fietsen' : 'Our bikes');
+                $translation->setTitle($this->trans('demo.our_bikes.title', $locale));
                 $translation->setSlug($locale == 'nl' ? 'koop-een-fiets' : 'buy-a-bike');
                 $translation->setWeight(20);
 
-                $page->setMenuDescription($locale == 'nl' ? 'Onze selectie van fietsen vertegenwoordigd de filosofie van The Crew. Alleen de beste fietsen bieden we aan, te koop, en dat doen we aan de beste prijzen. Geen grootwarenhuis, maar een speciaalzaak met gratis persoonlijk advies in onze winkel.' : 'Our selection of bikes represents the philosophy of The Crew. We offer only the best bikes, and do so at the best prices. Not a large retailer, but a specialty shop with free personal advice in our store.');
+                $page->setMenuDescription($this->trans('demo.our_bikes.description', $locale));
                 $page->setMenuImage($menuMedia);
             });
         }
@@ -344,7 +349,7 @@ class DefaultSiteFixtures extends AbstractFixture implements OrderedFixtureInter
             $pageparts['main'][] = $this->pagePartCreator->getCreatorArgumentsForPagePartAndProperties(
                 '{{ namespace }}\Entity\PageParts\HeaderPagePart',
                 array(
-                    'setTitle' => $locale == 'nl' ? 'Onze fietsen' : 'Our bikes',
+                    'setTitle' => $this->trans('demo.our_bikes.header1.title', $locale),
                     'setNiv' => 2
                 )
             );
@@ -980,5 +985,10 @@ class DefaultSiteFixtures extends AbstractFixture implements OrderedFixtureInter
     public function setContainer(ContainerInterface $container = null)
     {
         $this->container = $container;
+    }
+
+    protected function trans($id, $locale)
+    {
+        return $this->container->get('translator')->trans($id, [], static::TRANSLATION_DOMAIN, $locale);
     }
 }

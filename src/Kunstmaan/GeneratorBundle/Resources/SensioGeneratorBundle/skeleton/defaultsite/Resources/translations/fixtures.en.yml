@@ -1,0 +1,18 @@
+page:
+    home:
+        title:  Home
+    services:
+        title:  Services
+        slug:   services
+demo:
+    services:
+        header:
+            title:      Our services
+            content:    We are the place to go for a selection of the best bikes, but also for the maintenance of your bike. Our skilled professionals will help you gladly in our store.
+        page_template:  Content page with submenu
+    our_bikes:
+        title:  Our bikes
+        slug:   buy-a-bike
+        description:    'Our selection of bikes represents the philosophy of The Crew. We offer only the best bikes, and do so at the best prices. Not a large retailer, but a specialty shop with free personal advice in our store.'
+        header1:
+            title:  Our bikes

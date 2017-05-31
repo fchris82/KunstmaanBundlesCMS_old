@@ -103,7 +103,8 @@ class NodeSearcher extends AbstractElasticaSearcher
             ->addShould($elasticaQueryString)
             ->setMinimumNumberShouldMatch(1);
 
-        $this->applySecurityFilter($elasticaQueryBool);
+        // This cause empty search with ElasticSearch 1.7.3 It looks like it works with 1.7.5.
+        #$this->applySecurityFilter($elasticaQueryBool);
 
         if (!is_null($type)) {
             $elasticaQueryType = new \Elastica\Query\Term();

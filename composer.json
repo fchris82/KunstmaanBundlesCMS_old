@@ -52,42 +52,10 @@
         "ruflin/elastica": "^3.2"
     },
     "require-dev": {
-        "behat/behat": "3.1.0rc1",
-        "behat/symfony2-extension": "~2.1.1",
-        "behat/mink": "dev-master",
-        "behat/mink-browserkit-driver": "dev-master",
-        "behat/mink-selenium2-driver": "dev-master",
-        "behat/mink-goutte-driver": "dev-master",
-        "behat/mink-sahi-driver": "dev-master",
         "symfony/phpunit-bridge": "~3.0",
         "phpunit/phpunit": "~4.4",
         "fzaninotto/faker": "~1.6",
         "nelmio/alice": "^2.1.4"
-    },
-    "replace": {
-        "kunstmaan/admin-bundle": "self.version",
-        "kunstmaan/adminlist-bundle": "self.version",
-        "kunstmaan/article-bundle": "self.version",
-        "kunstmaan/form-bundle": "self.version",
-        "kunstmaan/media-bundle": "self.version",
-        "kunstmaan/media-pagepart-bundle": "self.version",
-        "kunstmaan/node-bundle": "self.version",
-        "kunstmaan/node-search-bundle": "self.version",
-        "kunstmaan/pagepart-bundle": "self.version",
-        "kunstmaan/search-bundle": "self.version",
-        "kunstmaan/seo-bundle": "self.version",
-        "kunstmaan/sitemap-bundle": "self.version",
-        "kunstmaan/utilities-bundle": "self.version",
-        "kunstmaan/translator-bundle": "self.version",
-        "kunstmaan/redirect-bundle": "self.version",
-        "kunstmaan/user-management-bundle": "self.version",
-        "kunstmaan/dashboard-bundle": "self.version",
-        "kunstmaan/behat-bundle": "self.version",
-        "kunstmaan/generator-bundle": "self.version",
-        "kunstmaan/live-reload-bundle": "self.version",
-        "kunstmaan/voting-bundle": "self.version",
-        "kunstmaan/languagechooser-bundle": "self.version",
-        "kunstmaan/tagging-bundle": "self.version"
     },
     "autoload": {
         "psr-4": {"Kunstmaan\\": "src/Kunstmaan/"}
